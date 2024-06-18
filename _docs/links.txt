@@ -1,0 +1,7 @@
+https://laravel.com/docs/11.x/filesystem
+
+https://benjamincrozat.com/custom-filesystem-adapter-laravel
+
+https://www.trovster.com/blog/2022/06/custom-laravel-disks-and-environment-based-filesystems
+
+https://laraveldaily.com/tip/create-custom-disks-at-runtime
