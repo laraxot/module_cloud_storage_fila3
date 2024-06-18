@@ -17,7 +17,7 @@ class CloudStorageServiceProvider extends XotBaseServiceProvider
 
     protected string $module_ns = __NAMESPACE__;
 
-    public function bootCallback()
+    public function bootCallback(): void
     {
         // Storage::extend('custom', function ($app, $config) {
         //    return new Filesystem(new CustomAdapter($config));
