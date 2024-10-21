@@ -1,15 +1,18 @@
 {
-    "name": "nwidart/cloudstorage",
+    "name": "laraxot/module_cloudstorage_fila3",
     "description": "",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "Marco Sottana",
+            "email": "marco.sottana@gmail.com"
         }
     ],
     "extra": {
         "laravel": {
-            "providers": [],
+            "providers": [
+                "Modules\\CloudStorage\\Providers\\CloudStorageServiceProvider",
+                "Modules\\CloudStorage\\Providers\\Filament\\AdminPanelProvider"
+            ],
             "aliases": {
 
             }
@@ -26,5 +29,8 @@
         "psr-4": {
             "Modules\\CloudStorage\\Tests\\": "tests/"
         }
+    },
+    "require": {
+        "spatie/laravel-google-cloud-storage": "^2.3"
     }
 }

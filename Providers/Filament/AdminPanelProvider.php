@@ -13,7 +13,7 @@ use Modules\Xot\Providers\Filament\XotBasePanelProvider;
 
 class AdminPanelProvider extends XotBasePanelProvider
 {
-    protected string $module = 'Chart';
+    protected string $module = 'CloudStorage';
 
     public function panel(Panel $panel): Panel
     {
