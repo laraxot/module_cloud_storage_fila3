@@ -9,6 +9,9 @@ use League\Flysystem\Filesystem;
 use Modules\CloudStorage\Filesystem\CustomAdapter;
 use Modules\Xot\Providers\XotBaseServiceProvider;
 
+/**
+ * Summary of CloudStorageServiceProvider.
+ */
 class CloudStorageServiceProvider extends XotBaseServiceProvider
 {
     public string $module_name = 'cloudstorage';
