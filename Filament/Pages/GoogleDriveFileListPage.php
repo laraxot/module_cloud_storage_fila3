@@ -9,6 +9,7 @@ use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Table;
 use Modules\CloudStorage\Services\GoogleDriveService;
 
 class GoogleDriveFileListPage extends Page implements HasTable
@@ -49,19 +50,21 @@ class GoogleDriveFileListPage extends Page implements HasTable
                     ->icon('heroicon-o-eye')
                     ->tooltip(__('View File'))
                     ->url(fn ($record) => $record['webViewLink'], true),
-
+                /*
                 Action::make('share')
                     ->icon('heroicon-o-share')
                     ->tooltip(__('Share to Corporate Folder'))
                     ->action(fn ($record) => $this->shareFileToCorporate($record['id'])),
+                */
             ]);
     }
 
     protected function getFilesQuery(): array
     {
-        return $this->driveService->listFiles();
+        return $this->driveService->getFiles();
     }
 
+    /*
     protected function shareFileToCorporate(string $fileId): void
     {
         $corporateFolderId = config('cloudstorage.corporate_folder_id'); // Set in config
@@ -69,7 +72,7 @@ class GoogleDriveFileListPage extends Page implements HasTable
 
         // You can log or notify the user about the sharing status.
     }
-
+    */
     protected function formatFileSize(int $size): string
     {
         if ($size >= 1073741824) {
