@@ -1,45 +1,55 @@
 <?php
 
 declare(strict_types=1);
+// File: Laravel/Modules/CloudStorage/Services/GoogleDriveService.php
 
 namespace Modules\CloudStorage\Services;
 
+use Google\Client;
+use Google\Service\Drive;
+use Webmozart\Assert\Assert;
+
 class GoogleDriveService
 {
-    protected \Google_Service_Drive $drive;
+    protected Client $client;
+    protected Drive $driveService;
 
     public function __construct()
     {
-        $client = new \Google_Client();
-        $client->setAuthConfig(storage_path('app/google/credentials.json')); // Your Google OAuth credentials
-        $client->addScope(\Google_Service_Drive::DRIVE);
-        $client->setAccessType('offline');
-        $this->drive = new \Google_Service_Drive($client);
+        $this->client = new Client();
+        Assert::string($client_id = config('services.google.client_id'));
+        Assert::string($client_secret = config('services.google.client_secret'));
+        Assert::string($redirect = config('services.google.redirect'));
+        Assert::isArray($scopes = config('services.google.scopes'));
+
+        $this->client->setClientId($client_id);
+        $this->client->setClientSecret($client_secret);
+        $this->client->setRedirectUri($redirect);
+        $this->client->setScopes($scopes);
+        $this->client->setAccessType('offline');
+
+        $user = auth()->user();
+        if (null == $user) {
+            throw new \Exception('Utente non autenticato');
+        }
+
+        if ($token = $user->getProviderField('google', 'token')) {
+            $this->client->setAccessToken($token);
+        }
+
+        $this->driveService = new Drive($this->client);
     }
 
-    public function listFiles(): array
+    /**
+     * Summary of getFiles.
+     *
+     * @return array
+     */
+    public function getFiles()
     {
-        $files = $this->drive->files->listFiles([
-            'pageSize' => 20, // Customize as needed
-            'fields' => 'nextPageToken, files(id, name, mimeType, modifiedTime, size)',
-        ]);
-
-        return $files->getFiles();
-    }
-
-    public function shareFile(string $fileId, string $corporateFolderId): \Google_Service_Drive_DriveFile
-    {
-        $file = new \Google_Service_Drive_DriveFile([
-            'parents' => [$corporateFolderId],
-        ]);
-
-        return $this->drive->files->update($fileId, $file);
-    }
-
-    public function getFileMetadata(string $fileId): \Google_Service_Drive_DriveFile
-    {
-        return $this->drive->files->get($fileId, [
-            'fields' => 'id, name, mimeType, modifiedTime, size, webViewLink',
-        ]);
+        return $this->driveService->files->listFiles([
+            'fields' => 'files(id, name, mimeType, modifiedTime, size)',
+            'q' => "'root' in parents and trashed = false",
+        ])->getFiles();
     }
 }
