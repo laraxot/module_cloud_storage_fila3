@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "e30e5c6e2564adf846820b1831c3faa1",
+=======
+    "content-hash": "c09c8b9e80816015d04dcfa245c18f9f",
+>>>>>>> origin/dev
     "packages": [
         {
             "name": "brick/math",
@@ -290,6 +294,7 @@
             "time": "2024-05-18T18:05:11+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "google/apiclient",
             "version": "v2.18.0",
             "source": {
@@ -403,6 +408,8 @@
             "time": "2024-10-21T01:08:24+00:00"
         },
         {
+=======
+>>>>>>> origin/dev
             "name": "google/auth",
             "version": "v1.42.0",
             "source": {
@@ -1985,6 +1992,7 @@
             "time": "2024-08-19T06:22:39+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "paragonie/constant_time_encoding",
             "version": "v3.0.0",
             "source": {
@@ -2212,6 +2220,8 @@
             "time": "2024-09-16T03:06:04+00:00"
         },
         {
+=======
+>>>>>>> origin/dev
             "name": "psr/cache",
             "version": "3.0.0",
             "source": {
