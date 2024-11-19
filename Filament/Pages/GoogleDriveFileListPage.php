@@ -27,7 +27,9 @@ class GoogleDriveFileListPage extends Page
     {
         $this->driveService = $driveService;
 
-        dddx('a');
+        dddx([
+            'listFiles' => $this->driveService->getFiles(),
+        ]);
     }
 
     /*
