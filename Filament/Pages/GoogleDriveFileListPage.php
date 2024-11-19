@@ -30,10 +30,12 @@ class GoogleDriveFileListPage extends Page
         dddx('a');
     }
 
+    /*
     public function __construct()
     {
         dddx('b');
     }
+        */
 
     public function setUp()
     {
