@@ -49,18 +49,18 @@ class GoogleDriveFileListPage extends Page
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label(__('File Name'))
+
                     ->searchable(),
 
                 TextColumn::make('mimeType')
-                    ->label(__('Type')),
+                    ,
 
                 TextColumn::make('modifiedTime')
-                    ->label(__('Modified'))
+
                     ->dateTime('Y-m-d H:i:s'),
 
                 TextColumn::make('size')
-                    ->label(__('Size'))
+
                     ->formatStateUsing(fn ($state): string => $this->formatFileSize((int) $state)),
             ])
             ->actions([
